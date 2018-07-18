@@ -1,31 +1,50 @@
 class Product {
   constructor(data){
-    this.id = id
-    this.title = title
-    this.price = price
-    this.currency_id = currency_id
-    this.picture = picture
-    this.condition = condition
-    this.free_shipping = free_shipping
+    this.id = data.id
+    this.title = data.title
+    this.price = data.price
+    this.currency_id = data.currency_id
+    this.thumbnail = data.thumbnail
+    this.condition = data.condition
+    this.shipping = data.shipping.free_shipping
+    this.sold_quantity = data.sold_quantity
+    this.description = data.description
+    console.log('constructor');
   }
 
-  getProduct(){
+  getSearch(){
     return {
       id: this.id,
       title: this.title,
-      price: this.splitPrice(this.price)
-      picture: this.picture,
+      price: this.splitPrice(this.price),
+      picture: this.thumbnail,
       condition: this.condition,
-      free_shipping: this.free_shipping
+      free_shipping: this.shipping
+    }
+  }
+
+  getProduct(){
+    console.log('getProduct');
+    return {
+      id: this.id,
+      title: this.title,
+      price: this.splitPrice(this.price),
+      picture: this.thumbnail,
+      condition: this.condition,
+      free_shipping: this.shipping,
+      sold_quantity: this.sold_quantity,
+      description: this.description
     }
   }
 
   splitPrice(){
-    const priceSplit = this.price.split(',');
+    const toString = this.price.toString();
+    const priceSplit = toString.split(',');
+    console.log('splitPrice');
     return {
       currency: this.currency_id,
-      amount: priceSplit[0],
-      decimals: priceSplit[1]
+      amount: parseInt(priceSplit[0]),
+      decimals: parseInt(priceSplit[1])
     }
   }
 }

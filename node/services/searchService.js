@@ -5,68 +5,29 @@ let self = {};
 
 self.getInfo = function (query) {
   const searchQuery = new Promise (function (resolve, reject) {
-    rest.get('https://api.mercadolibre.com/sites/MLA/search?q=​' + query).on('success',
+    console.log('promise', query);
+    rest.get('https://api.mercadolibre.com/sites/MLA/search?q=' + query + '&limit=4').on('success',
     function (result) {
+      console.log(result);
+      console.log('success');
       resolve(result)
     }).on('fail', function (err) {
+      console.log('fail');
       reject(err)
     })
   })
   return searchQuery
 }
 
-self.items = [];
+let items = [];
 
-self.getResults = function (result.results) {
-  for (var i = 0; i < result.results.length; i++) {
-    new Product()
+self.getResults = function (results) {
+  console.log(results.length);
+  for (var i = 0; i < results.length; i++) {
+    console.log('for');
+    items.push(new productModel(results[i]).getProduct());
   }
-      items: [{
-      id: result.results.id,
-      title: result.results.title,
-      price: {
-        currency: result.results.currency_id,
-        amount: priceSplit[0],
-        decimals: priceSplit[1]
-      },
-      picture: result.results.thumbnail,
-      condition: result.results.condition,
-      free_shipping: result.results.free_shipping
-    },{
-      id: result.results.id,
-      title: result.results.title,
-      price: {
-        currency: result.results.currency_id,
-        amount: priceSplit[0],
-        decimals: priceSplit[1]
-      },
-      picture: result.results.thumbnail,
-      condition: result.results.condition,
-      free_shipping: result.results.free_shipping
-    },{
-      id: result.results.id,
-      title: result.results.title,
-      price: {
-        currency: result.results.currency_id,
-        amount: priceSplit[0],
-        decimals: priceSplit[1]
-      },
-      picture: result.results.thumbnail,
-      condition: result.results.condition,
-      free_shipping: result.results.free_shipping
-    },{
-      id: result.results.id,
-      title: result.results.title,
-      price: {
-        currency: result.results.currency_id,
-        amount: priceSplit[0],
-        decimals: priceSplit[1]
-      },
-      picture: result.results.thumbnail,
-      condition: result.results.condition,
-      free_shipping: result.results.free_shipping
-    }]
-  }
+  return items
 }
 
 module.exports = self;
