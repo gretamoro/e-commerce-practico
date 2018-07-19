@@ -14,9 +14,21 @@ self.getItem = function (id) {
   return itemId
 }
 
+self.getCategory = function (category_id) {
+  const catPromise = new Promise( (resolve, reject) => {
+    rest.get('https://api.mercadolibre.com/categories/' + category_id).on('success',
+    (result) => {
+      resolve(result)
+    }).on('fail', (err) => {
+      reject(err)
+    })
+  })
+  return catPromise
+}
+
 self.getDescription = function (id) {
   const description = new Promise( (resolve, reject) => {
-    rest.get('https://api.mercadolibre.com/items/​' + id + '/description').on('success',
+    rest.get('https://api.mercadolibre.com/items/' + id + '/description').on('success',
     (result) => {
       resolve(result)
     }).on('fail', (err) => {
