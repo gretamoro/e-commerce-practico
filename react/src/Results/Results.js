@@ -28,17 +28,12 @@ class Results extends Component {
     return(
       <main className="main-container">
         <Search />
-
         {this.state.data &&
           this.state.data.items.map((item, i) => {
             const urlId = '/items/' + item.id
             return (
               <Link to={urlId} key={i}>
-                <ListProduct
-                  picture={item.picture}
-                  price={item.price.amount}
-                  title={item.title}
-                />
+                <ListProduct picture={item.picture} price={item.price.amount} title={item.title}/>
               </Link>
             )
           })

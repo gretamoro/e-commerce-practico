@@ -19,12 +19,16 @@ class Search extends Component {
   render(){
     const url = '/items?search=' + this.state.valorInput
     return(
-      <div>
-        <input onChange={this.handleChange.bind(this)} type="text" value={this.state.valorInput}/>
-        <Link to={url}>
-          <button type="button">Buscar</button>
-        </Link>
-      </div>
+      <main className="main-container">
+        <div className="inputSearch">
+          <input onChange={this.handleChange.bind(this)} type="text" value={this.state.valorInput}/>
+        </div>
+        <div className="buttonSearch">
+          <Link to={url}>
+            <button type="button">Buscar</button>
+          </Link>
+        </div>
+      </main>
     )
   }
 }

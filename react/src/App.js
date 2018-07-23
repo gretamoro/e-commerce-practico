@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './Search/Search';
 import Results from './Results/Results';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Product from './Product/Product';
 
 class App extends Component {
   render() {
