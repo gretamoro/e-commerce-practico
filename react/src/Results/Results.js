@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ListProduct from '../ListProduct/ListProduct';
 import Search from '../Search/Search';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 const queryString = require('query-string');
 
 class Results extends Component {
@@ -28,6 +29,10 @@ class Results extends Component {
     return(
       <main className="main-container">
         <Search />
+        {this.state.data &&
+          <Breadcrumb categories={this.state.data.categories}/>
+        }
+
         {this.state.data &&
           this.state.data.items.map((item, i) => {
             const urlId = '/items/' + item.id

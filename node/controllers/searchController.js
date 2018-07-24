@@ -4,13 +4,11 @@ let self = {};
 
 self.get = function (req, res) {
   const query = req.query['q'];
-  console.log('get');
+
   searchService.getInfo(query).then(function (result) {
-    console.log('res.json');
-
-    self.categories = []
-
+    let categories = []
     let hasCat = [];
+
     if (result.filters[0]) {
       hasCat = result.filters[0]
     }else {
@@ -18,11 +16,12 @@ self.get = function (req, res) {
     }
 
     if (hasCat == result.filters[0]) {
-      self.categories = hasCat.values[0].path_from_root.map((category) => {
+      categories = hasCat.values[0].path_from_root.map((category) => {
         return category.name
       })
     }else {
       let catArray = [];
+
       result.available_filters[0].values.map((catResults) => {
         catArray.push(catResults)
       })
@@ -34,7 +33,8 @@ self.get = function (req, res) {
           bestCategory = catArray[i];
         }
       }
-      self.categories.push(bestCategory.name);
+
+      categories.push(bestCategory.name);
     }
 
     return res.json({
@@ -42,11 +42,12 @@ self.get = function (req, res) {
       name: 'Nadia',
       lastname: 'Nemo'
       },
-      categories: self.categories,
+      categories: categories,
       items: searchService.getResults(result.results)
     })
   }).catch(function (err) {
     console.log(err);
+    return res.sendStatus(500);
   })
 }
 

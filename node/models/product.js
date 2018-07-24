@@ -9,7 +9,7 @@ class Product {
     this.shipping = data.shipping.free_shipping
     this.sold_quantity = data.sold_quantity
     this.description = data.description
-    console.log('constructor');
+    this.categories = data.categories
   }
 
   getSearch(){
@@ -24,7 +24,6 @@ class Product {
   }
 
   getProduct(){
-    console.log('getProduct');
     return {
       id: this.id,
       title: this.title,
@@ -33,14 +32,14 @@ class Product {
       condition: this.condition,
       free_shipping: this.shipping,
       sold_quantity: this.sold_quantity,
-      description: this.description
+      description: this.description,
+      categories: this.categories
     }
   }
 
   splitPrice(){
     const toString = this.price.toString();
     const priceSplit = toString.split(',');
-    console.log('splitPrice');
     return {
       currency: this.currency_id,
       amount: parseInt(priceSplit[0]),
