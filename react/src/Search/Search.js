@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './Search.css';
 
 class Search extends Component {
   constructor(props){
@@ -20,13 +21,15 @@ class Search extends Component {
     const url = '/items?search=' + this.state.valorInput
     return(
       <main className="main-container">
-        <div className="inputSearch">
-          <input onChange={this.handleChange.bind(this)} type="text" value={this.state.valorInput}/>
-        </div>
-        <div className="buttonSearch">
-          <Link to={url}>
-            <button type="button">Buscar</button>
-          </Link>
+        <div className="search">
+          <div className="inputSearch">
+            <input onChange={this.handleChange.bind(this)} type="text" value={this.state.valorInput}/>
+          </div>
+          <div className="buttonSearch">
+            <Link to={url}>
+              <button type="button">Buscar</button>
+            </Link>
+          </div>
         </div>
       </main>
     )

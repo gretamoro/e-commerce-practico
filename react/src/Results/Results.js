@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ListProduct from '../ListProduct/ListProduct';
 import Search from '../Search/Search';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
+import './Results.css';
 const queryString = require('query-string');
 
 class Results extends Component {
@@ -29,20 +30,31 @@ class Results extends Component {
     return(
       <main className="main-container">
         <Search />
-        {this.state.data &&
-          <Breadcrumb categories={this.state.data.categories}/>
-        }
 
-        {this.state.data &&
-          this.state.data.items.map((item, i) => {
-            const urlId = '/items/' + item.id
-            return (
-              <Link to={urlId} key={i}>
-                <ListProduct picture={item.picture} price={item.price.amount} title={item.title}/>
-              </Link>
-            )
-          })
-        }
+        <div className="breadcrumbDiv">
+          {this.state.data &&
+            <Breadcrumb categories={this.state.data.categories}/>
+          }
+        </div>
+
+        <div className="list">
+          {this.state.data &&
+            this.state.data.items.map((item, i) => {
+              const urlId = '/items/' + item.id
+              return (
+                <Link className="link" to={urlId} key={i}>
+                  <ListProduct
+                  picture={item.picture}
+                  priceAmount={item.price.amount}
+                  priceDecimals={item.price.decimals}
+                  title={item.title}
+                  />
+                </Link>
+              )
+            })
+          }
+        </div>
+
       </main>
     )
   }

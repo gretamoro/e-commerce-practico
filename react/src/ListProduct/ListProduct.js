@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ListProduct.css';
 
 class ListProduct extends Component {
   render() {
@@ -7,10 +8,9 @@ class ListProduct extends Component {
         <div className="image">
           <img src={this.props.picture} alt={this.props.title}/>
         </div>
-        <div className="listPrice">
-          <h2 className="price">{this.props.price}</h2>
-        </div>
-        <div className="listTitle">
+        <div className="listPriceAndTitle">
+          <h2 className="priceAmount">${this.props.priceAmount}</h2>
+          <p className="priceDecimals">{this.props.priceDecimals}</p>
           <h3 className="title">{this.props.title}</h3>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Results from '../Results/Results';
+import './Breadcrumb.css';
 
 class Breadcrumb extends Component {
 
